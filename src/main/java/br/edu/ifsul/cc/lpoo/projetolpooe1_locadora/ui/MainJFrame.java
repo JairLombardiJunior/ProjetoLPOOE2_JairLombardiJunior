@@ -40,7 +40,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("BEM VINDO À LOCADORA");
 
-        jLabel2.setText("Teste");
+        jLabel2.setText("Teste 21");
 
         menuCadastro.setText("Cadastro");
 
