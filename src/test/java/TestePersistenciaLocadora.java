@@ -58,7 +58,7 @@ public class TestePersistenciaLocadora {
         
         Alugamento a = new Alugamento();
         a.setDescricao("Alugamento por duas semanas");
-        a.setPreco(5.00);
+        a.setPreco(5.00f);
          
         try{
             jpa.persist(cl);
