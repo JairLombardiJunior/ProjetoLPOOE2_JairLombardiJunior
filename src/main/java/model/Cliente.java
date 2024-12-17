@@ -92,5 +92,12 @@ public class Cliente implements Serializable{
     public List<Alugamento> getListaAlugamento() {
         return listaAlugamento;
     }*/
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    
     
 }

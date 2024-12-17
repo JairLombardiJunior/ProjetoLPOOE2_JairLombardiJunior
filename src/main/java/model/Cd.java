@@ -107,6 +107,10 @@ public class Cd implements Serializable{
         this.filme = filme;
     }*/
 
+    @Override
+    public String toString() {
+        return titulo;
+    }
     
     
 }

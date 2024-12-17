@@ -103,4 +103,9 @@ public class Alugamento implements Serializable{
         this.cd = cd;
     }
     
+    @Override
+    public String toString() {
+        return descricao;
+    }
+    
 }

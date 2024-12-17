@@ -68,7 +68,6 @@ public class TestePersistenciaLocadora {
             jpa.persist(c);
             jpa.persist(a);
             
-            jpa.remover(a);
             
         } catch(Exception e){
             System.err.println("Erro ao persistir modelo: "+a);

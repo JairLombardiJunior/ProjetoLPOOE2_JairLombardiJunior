@@ -20,9 +20,10 @@ public class TelaAlugamento extends javax.swing.JFrame {
      * Creates new form TelaAlugamento
      */
     public TelaAlugamento() {
+        jpa = new PersistenciaJPA();
         initComponents();
         
-        jpa = new PersistenciaJPA();
+        
         carregarAlugeisCadastrados();
         //carregarCdsCadastrados();
     }
