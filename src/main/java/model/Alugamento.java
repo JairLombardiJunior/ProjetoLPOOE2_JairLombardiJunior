@@ -7,6 +7,7 @@ package model;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -35,13 +37,19 @@ public class Alugamento implements Serializable{
     private float preco;
 
     //@JoinColumn(name = "Alugamento_cliente", nullable = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_cpf", referencedColumnName = "cpf")
     private Cliente cliente;
     
     //@JoinColumn(name = "Alugamento_cliente", nullable = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cd_id", referencedColumnName = "id")
     private Cd cd;
     
     public Alugamento() {
+        
     }
+    
     /*
     @OneToMany(mappedBy = "Alugamento")
     private List<Cd> cd;

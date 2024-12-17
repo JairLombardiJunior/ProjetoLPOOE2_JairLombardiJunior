@@ -273,6 +273,7 @@ public class TelaAlugamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaNomeKeyPressed
 
+     //Filtro por nome
     private void txtBuscaNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaNomeKeyReleased
         if(txfClienteBusca.getText().trim().isEmpty()){
             carregarAlugeisCadastrados();
@@ -290,7 +291,7 @@ public class TelaAlugamento extends javax.swing.JFrame {
     private void txtBuscaCdKeyPressed(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_txtBuscaCdKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscaCdKeyPressed
-
+    //Filtro por cd
     private void txtBuscaCdKeyReleased(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtBuscaCdKeyReleased
         if(txfCdBusca.getText().trim().isEmpty()){
             carregarAlugeisCadastrados();
@@ -342,6 +343,8 @@ public class TelaAlugamento extends javax.swing.JFrame {
             }
         });
     }
+    
+    //carregar a lista de Alugeis
     
     public void carregarAlugeisCadastrados() {
         jpa.conexaoAberta();
