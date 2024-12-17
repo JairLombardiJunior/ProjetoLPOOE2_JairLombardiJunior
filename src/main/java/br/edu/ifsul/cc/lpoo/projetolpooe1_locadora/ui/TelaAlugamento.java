@@ -248,7 +248,7 @@ public class TelaAlugamento extends javax.swing.JFrame {
         Alugamento alugelSelecionado = lstAlugueis.getSelectedValue();
         if (alugelSelecionado != null) {
             TelaCadastroAlugel telaEdt = new TelaCadastroAlugel(this, rootPaneCheckingEnabled);
-            //telaEdt.set(alugelSelecionado);
+            //telaEdt.setalugamento(alugelSelecionado);
             telaEdt.setVisible(true);
             
             

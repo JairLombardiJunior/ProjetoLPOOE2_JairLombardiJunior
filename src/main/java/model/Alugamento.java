@@ -32,7 +32,7 @@ public class Alugamento implements Serializable{
     private String descricao;
     
     @Column(nullable = false, precision = 2)
-    private double preco;
+    private float preco;
 
     @JoinColumn(name = "Alugamento_cliente", nullable = true)
     private Cliente cliente;
@@ -75,7 +75,7 @@ public class Alugamento implements Serializable{
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
     
