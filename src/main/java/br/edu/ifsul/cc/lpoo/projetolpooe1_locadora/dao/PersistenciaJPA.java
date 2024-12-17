@@ -135,7 +135,7 @@ public class PersistenciaJPA implements InterfaceBD{
         }
 
     }
-    /* ???
+    /* ??? 
     public List<Cd> getCds(String titulo) {
         entity = getEntityManager();
 
