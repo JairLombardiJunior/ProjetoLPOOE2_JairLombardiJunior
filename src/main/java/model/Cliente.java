@@ -20,8 +20,8 @@ import javax.persistence.Table;
  * @author Camargo
  */
 @Entity
-@Table(name = "tb_pessoa")
-public class Pessoa implements Serializable{
+@Table(name = "tb_cliente")
+public class Cliente implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     @Column(name = "pessoa_id")
@@ -35,10 +35,14 @@ public class Pessoa implements Serializable{
     
     @Column(nullable = false, length = 400)
     private String endereço;
-    
+
+    public Cliente() {
+    }
+    /*
     @OneToMany(mappedBy = "pessoa")
     private List<Alugamento> listaAlugamento;
-
+    */
+    
     public int getCpf() {
         return cpf;
     }
@@ -78,7 +82,7 @@ public class Pessoa implements Serializable{
 
     public void setAlugamento(Alugamento alugamento) {
         this.alugamento = alugamento;
-    }*/
+    }
     
     public void addAlugamento(Alugamento a){
         listaAlugamento.add(a);
@@ -86,6 +90,6 @@ public class Pessoa implements Serializable{
     
     public List<Alugamento> getListaAlugamento() {
         return listaAlugamento;
-    }
+    }*/
     
 }

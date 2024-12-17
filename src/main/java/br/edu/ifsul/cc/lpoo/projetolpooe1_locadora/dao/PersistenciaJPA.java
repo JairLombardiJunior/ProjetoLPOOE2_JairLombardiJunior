@@ -4,9 +4,14 @@
  */
 package br.edu.ifsul.cc.lpoo.projetolpooe1_locadora.dao;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import model.Alugamento;
+import model.Cd;
+import model.Cliente;
 
 /**
  *
@@ -70,4 +75,80 @@ public class PersistenciaJPA implements InterfaceBD{
         }
         return entity;
     }
+    
+    // funções para listar dados 
+    public List<Alugamento> getAlugamentos() {
+        entity = getEntityManager();
+
+        try {
+            TypedQuery<Alugamento> query
+                    = entity.createQuery("Select a from Alugamento a", Alugamento.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Erro ao buscar Pessoas: " + e);
+            return null;
+        }
+
+    }
+    
+    
+    
+    
+    public List<Cliente> getClientes() {
+        entity = getEntityManager();
+
+        try {
+            TypedQuery<Cliente> query
+                    = entity.createQuery("Select cl from Cliente cl", Cliente.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Erro ao buscar Clientes: " + e);
+            return null;
+        }
+
+    }
+    
+    public List<Cliente> getClientes(String nome) {
+        entity = getEntityManager();
+
+        try {
+            TypedQuery<Cliente> query
+                    = entity.createQuery("Select cl from Cliente cl where lower(cl.nome) LIKE :n",
+                            Cliente.class);
+            query.setParameter("n", "%" + nome.toLowerCase() + "%");
+            return query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Erro ao buscar Clientes: " + e);
+            return null;
+        }
+
+    }
+    
+    public List<Cd> getCds() {
+        entity = getEntityManager();
+
+        try {
+            TypedQuery<Cd> query
+                    = entity.createQuery("Select cd from Cd cd", Cd.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Erro ao buscar Pessoas: " + e);
+            return null;
+        }
+
+    }
+    /*
+    public List<Cd> getCds() {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Cd> query
+                    = em.createQuery("SELECT cd FROM Cd cd", Cd.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    
+    }*/
+    
 }

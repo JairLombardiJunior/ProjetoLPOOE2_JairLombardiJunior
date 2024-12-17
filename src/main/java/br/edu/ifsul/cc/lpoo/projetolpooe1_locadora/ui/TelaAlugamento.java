@@ -4,17 +4,27 @@
  */
 package br.edu.ifsul.cc.lpoo.projetolpooe1_locadora.ui;
 
+import br.edu.ifsul.cc.lpoo.projetolpooe1_locadora.dao.PersistenciaJPA;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import model.Alugamento;
+
 /**
  *
  * @author 20181pf.cc0256
  */
 public class TelaAlugamento extends javax.swing.JFrame {
-
+    
+    PersistenciaJPA jpa;
     /**
      * Creates new form TelaAlugamento
      */
     public TelaAlugamento() {
         initComponents();
+        
+        jpa = new PersistenciaJPA();
+        carregarAlugeisCadastrados();
+        //carregarCdsCadastrados();
     }
 
     /**
@@ -27,100 +37,245 @@ public class TelaAlugamento extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        lblBuscaNome = new javax.swing.JLabel();
-        lblBuscaVinculo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        lstAlugueis = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
+        lblBuscaClienteNome = new javax.swing.JLabel();
+        txfClienteBusca = new javax.swing.JTextField();
+        lblBuscaCD = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txfCdBusca = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        btnNovoAlugel = new javax.swing.JButton();
+        btnEditarAlugel = new javax.swing.JButton();
+        btnRemoverAlugel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         lblTitulo.setText("Alugueis Registrados");
 
-        lblBuscaNome.setText("Cliente:");
+        jScrollPane1.setViewportView(lstAlugueis);
 
-        lblBuscaVinculo.setText("Produto:");
+        lblBuscaClienteNome.setText("Cliente:");
 
-        jScrollPane1.setViewportView(jList1);
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txfClienteBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txfClienteBuscaActionPerformed(evt);
+            }
+        });
+        txfClienteBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscaNomeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscaNomeKeyReleased(evt);
             }
         });
 
-        jButton1.setText("Novo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        lblBuscaCD.setText("Cd:");
+
+        jLabel1.setText("Procurar Pessoa:");
+
+        txfCdBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txfCdBuscaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Remover");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblBuscaClienteNome)
+                            .addComponent(lblBuscaCD))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfClienteBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfCdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBuscaClienteNome)
+                    .addComponent(txfClienteBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBuscaCD)
+                    .addComponent(txfCdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
-        jButton3.setText("Editar");
+        jLabel3.setText("<html><p>Opções para Alugel: </p></html>");
+
+        btnNovoAlugel.setText("Novo");
+        btnNovoAlugel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoAlugelActionPerformed(evt);
+            }
+        });
+
+        btnEditarAlugel.setText("Editar");
+        btnEditarAlugel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarAlugelActionPerformed(evt);
+            }
+        });
+
+        btnRemoverAlugel.setText("Remover");
+        btnRemoverAlugel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverAlugelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnNovoAlugel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarAlugel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRemoverAlugel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnNovoAlugel)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditarAlugel)
+                .addGap(19, 19, 19)
+                .addComponent(btnRemoverAlugel)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblBuscaNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblBuscaVinculo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblTitulo))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addGap(15, 15, 15)
+                        .addComponent(lblTitulo))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(lblTitulo)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBuscaNome)
-                    .addComponent(lblBuscaVinculo)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txfClienteBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfClienteBuscaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txfClienteBuscaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnNovoAlugelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAlugelActionPerformed
+        TelaCadastroAlugel telaCadastroAlugel
+                = new TelaCadastroAlugel(this, rootPaneCheckingEnabled);
+        telaCadastroAlugel.setVisible(true);
+
+        carregarAlugeisCadastrados();
+    }//GEN-LAST:event_btnNovoAlugelActionPerformed
+
+    private void txfCdBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfCdBuscaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txfCdBuscaActionPerformed
+
+    private void btnRemoverAlugelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverAlugelActionPerformed
+        Alugamento alugelSelecionado = lstAlugueis.getSelectedValue();
+        if (alugelSelecionado != null) {
+            System.out.println("Alugamento: " + alugelSelecionado.getCertificacao());
+            try {
+                jpa.conexaoAberta();
+
+                int delOp = JOptionPane.showConfirmDialog(this,
+                        "Tem certeza que deseja remover " + alugelSelecionado.getDescricao()+ "?");
+                if (delOp == JOptionPane.YES_OPTION) {
+                    jpa.remover(alugelSelecionado);
+                }
+
+                jpa.fecharConexao();
+                carregarAlugeisCadastrados();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,
+                        "Erro ao remover pessoa " + alugelSelecionado + "\n" + e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um alugel para remover");
+        }
+    }//GEN-LAST:event_btnRemoverAlugelActionPerformed
+
+    private void btnEditarAlugelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAlugelActionPerformed
+        Alugamento alugelSelecionado = lstAlugueis.getSelectedValue();
+        if (alugelSelecionado != null) {
+            TelaCadastroAlugel telaEdt = new TelaCadastroAlugel(this, rootPaneCheckingEnabled);
+            //telaEdt.set(alugelSelecionado);
+            telaEdt.setVisible(true);
+            
+            
+            carregarAlugeisCadastrados();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma pessoa para Editar");
+        }
+    }//GEN-LAST:event_btnEditarAlugelActionPerformed
+
+    private void txtBuscaNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaNomeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaNomeKeyPressed
+
+    private void txtBuscaNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaNomeKeyReleased
+        if(txfClienteBusca.getText().trim().isEmpty()){
+            carregarAlugeisCadastrados();
+        } else{
+            jpa.conexaoAberta();
+            DefaultListModel modeloLista = new DefaultListModel();
+            modeloLista.addAll(jpa.getClientes(txfClienteBusca.getText().trim()));
+            System.out.println("Clientes carregadas: "+jpa.getClientes(txfClienteBusca.getText().trim()));
+            lstAlugueis.setModel(modeloLista);
+
+            jpa.fecharConexao();
+        }
+    }//GEN-LAST:event_txtBuscaNomeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -156,17 +311,33 @@ public class TelaAlugamento extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void carregarAlugeisCadastrados() {
+        jpa.conexaoAberta();
+
+        DefaultListModel modeloListaA = new DefaultListModel();
+        modeloListaA.addAll(jpa.getAlugamentos());
+        lstAlugueis.setModel(modeloListaA);
+
+        jpa.fecharConexao();
+
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton btnEditarAlugel;
+    private javax.swing.JButton btnNovoAlugel;
+    private javax.swing.JButton btnRemoverAlugel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lblBuscaNome;
-    private javax.swing.JLabel lblBuscaVinculo;
+    private javax.swing.JLabel lblBuscaCD;
+    private javax.swing.JLabel lblBuscaClienteNome;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JList<Alugamento> lstAlugueis;
+    private javax.swing.JTextField txfCdBusca;
+    private javax.swing.JTextField txfClienteBusca;
     // End of variables declaration//GEN-END:variables
 }

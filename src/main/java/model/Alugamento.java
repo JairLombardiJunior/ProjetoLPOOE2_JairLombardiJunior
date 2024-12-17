@@ -26,21 +26,26 @@ import javax.persistence.Table;
 public class Alugamento implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
-    private int idAlug;
-    
-    @Column(nullable = false, precision = 2)
-    private double precoPorDia;
+    private int certificacao;
     
     @Column(nullable = false, length = 400)
-    private String comentario;
+    private String descricao;
     
-    @Column(nullable = false, length = 20)
-    private Calendar dataDeDevolucao;
+    @Column(nullable = false, precision = 2)
+    private double preco;
+
+    @JoinColumn(name = "Alugamento_cliente", nullable = true)
+    private Cliente cliente;
     
+    @JoinColumn(name = "Alugamento_cd", nullable = true)
+    private Cd cd;
+    
+    public Alugamento() {
+    }
     /*
     @OneToMany(mappedBy = "Alugamento")
     private List<Cd> cd;
-    */
+    
     @ManyToOne
     @JoinColumn(name = "adAlug")
     private Cd cd;
@@ -48,52 +53,46 @@ public class Alugamento implements Serializable{
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
+    */
 
-    public int getIdAlug() {
-        return idAlug;
+    public int getCertificacao() {
+        return certificacao;
     }
 
-    public void setIdAlug(int idAlug) {
-        this.idAlug = idAlug;
+    public void setCertificacao(int certificacao) {
+        this.certificacao = certificacao;
     }
 
-    public double getPrecoPorDia() {
-        return precoPorDia;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setPrecoPorDia(double precoPorDia) {
-        this.precoPorDia = precoPorDia;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getComentario() {
-        return comentario;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+    
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public Calendar getDataDeDevolucao() {
-        return dataDeDevolucao;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
-
-    public void setDataDeDevolucao(Calendar dataDeDevolucao) {
-        this.dataDeDevolucao = dataDeDevolucao;
-    }
-
+    
     public Cd getCd() {
         return cd;
     }
 
-    public void setCd(Cd cd) {
+    public void setVinculoPessoa(Cd cd) {
         this.cd = cd;
     }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
+    
 }

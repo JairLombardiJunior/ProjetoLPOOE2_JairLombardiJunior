@@ -5,11 +5,12 @@ import java.util.Calendar;
 //import java.util.Set;
 import model.Alugamento;
 import model.Cd;
+import model.Cliente;
 //import model.Filme;
 //import model.Genero_Filme;
-import model.TipoProduto;
+//import model.TipoProduto;
 //import model.Jogo;
-import model.Pessoa;
+//import model.Pessoa;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,6 +45,32 @@ public class TestePersistenciaLocadora {
     //
     @Test
     public void testePersistenciaLocadora() {
+        
+        Cliente cl = new Cliente();
+        cl.setNome("Jair");
+        cl.setFone("99996666");
+        cl.setEndereço("Rua tal, numero 24, A");
+        
+        Cd cd = new Cd();
+        cd.setTitulo("Friday 14th");
+        cd.setFaixa_etaria("Não recomendado para menores de 14 anos");
+        cd.setTipo("Horror");
+        
+        Alugamento a = new Alugamento();
+        a.setDescricao("Alugamento por duas semanas");
+        a.setPreco(5.00);
+         
+        try{
+            jpa.persist(cl);
+            jpa.persist(cd);
+            jpa.persist(a);
+            
+            jpa.remover(a);
+            
+        } catch(Exception e){
+            System.err.println("Erro ao persistir modelo: "+a);
+        }
+        
         /*
         Filme f = new Filme();
         f.setDescricao("Filme sobre Corridas illegais no submundo da sociedade");

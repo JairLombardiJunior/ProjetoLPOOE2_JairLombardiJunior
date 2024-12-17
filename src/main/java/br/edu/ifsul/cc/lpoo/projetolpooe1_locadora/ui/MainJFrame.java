@@ -4,6 +4,7 @@
  */
 package br.edu.ifsul.cc.lpoo.projetolpooe1_locadora.ui;
 
+
 /**
  *
  * @author 20181pf.cc0256
@@ -30,7 +31,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
-        miCliente = new javax.swing.JMenuItem();
         miAlugel = new javax.swing.JMenuItem();
         menuOutro = new javax.swing.JMenu();
         miSobre = new javax.swing.JMenuItem();
@@ -40,19 +40,16 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("BEM VINDO À LOCADORA");
 
-        jLabel2.setText("Teste 21");
+        jLabel2.setText("Jair Lombardi Júnior");
 
         menuCadastro.setText("Cadastro");
 
-        miCliente.setText("Cliente");
-        miCliente.addActionListener(new java.awt.event.ActionListener() {
+        miAlugel.setText("Alugel");
+        miAlugel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miClienteActionPerformed(evt);
+                miAlugelActionPerformed(evt);
             }
         });
-        menuCadastro.add(miCliente);
-
-        miAlugel.setText("Alugel");
         menuCadastro.add(miAlugel);
 
         jMenuBar1.add(menuCadastro);
@@ -75,21 +72,24 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(88, 88, 88)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -100,10 +100,10 @@ public class MainJFrame extends javax.swing.JFrame {
         telaSobre.setVisible(true);
     }//GEN-LAST:event_miSobreActionPerformed
 
-    private void miClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miClienteActionPerformed
-        TelaCadastroCliente telaCliente = new TelaCadastroCliente();
-        telaCliente.setVisible(true);
-    }//GEN-LAST:event_miClienteActionPerformed
+    private void miAlugelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAlugelActionPerformed
+        TelaAlugamento telaAlugamento = new TelaAlugamento();
+        telaAlugamento.setVisible(true);
+    }//GEN-LAST:event_miAlugelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +148,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuOutro;
     private javax.swing.JMenuItem miAlugel;
-    private javax.swing.JMenuItem miCliente;
     private javax.swing.JMenuItem miSobre;
     // End of variables declaration//GEN-END:variables
 }

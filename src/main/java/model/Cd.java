@@ -34,14 +34,21 @@ public class Cd implements Serializable{
     private int id;
     
     @Column(nullable = false, length = 50)
-    private String nome;
+    private String titulo;
     
     @Column(nullable = false, length = 20)
-    private TipoProduto tipo;
+    private String faixa_etaria;
     
+    @Column(nullable = false, length = 20)
+    private String tipo;
+
+    public Cd() {
+    }
+    
+    /*
     @Column(nullable = false, precision = 2)
     private double preco;
-    /*
+    
     @ManyToOne
     @JoinColumn(name = "jogo_id")
     private Jogo jogo;
@@ -57,38 +64,31 @@ public class Cd implements Serializable{
     public void setId_commercial(int id_commercial) {
         this.id = id_commercial;
     }
-    
-    public String getNome() {
-        return nome;
+
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public int getId() {
-        return id;
+    public String getFaixa_etaria() {
+        return faixa_etaria;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setFaixa_etaria(String faixa_etaria) {
+        this.faixa_etaria = faixa_etaria;
     }
 
-    public TipoProduto getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoProduto tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
     /*
     public Jogo getJogo() {
         return jogo;
@@ -105,5 +105,7 @@ public class Cd implements Serializable{
     public void setFilme(Filme filme) {
         this.filme = filme;
     }*/
+
+    
     
 }
