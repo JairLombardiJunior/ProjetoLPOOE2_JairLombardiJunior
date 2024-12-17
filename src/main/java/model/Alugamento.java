@@ -34,10 +34,10 @@ public class Alugamento implements Serializable{
     @Column(nullable = false, precision = 2)
     private float preco;
 
-    @JoinColumn(name = "Alugamento_cliente", nullable = true)
+    //@JoinColumn(name = "Alugamento_cliente", nullable = true)
     private Cliente cliente;
     
-    @JoinColumn(name = "Alugamento_cd", nullable = true)
+    //@JoinColumn(name = "Alugamento_cliente", nullable = true)
     private Cd cd;
     
     public Alugamento() {
@@ -91,7 +91,7 @@ public class Alugamento implements Serializable{
         return cd;
     }
 
-    public void setVinculoPessoa(Cd cd) {
+    public void setCd(Cd cd) {
         this.cd = cd;
     }
     

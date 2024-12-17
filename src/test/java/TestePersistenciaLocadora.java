@@ -3,9 +3,9 @@ import br.edu.ifsul.cc.lpoo.projetolpooe1_locadora.dao.PersistenciaJPA;
 import java.util.Calendar;
 //import java.util.HashSet;
 //import java.util.Set;
-import model.Alugamento;
 import model.Cd;
 import model.Cliente;
+import model.Alugamento;
 //import model.Filme;
 //import model.Genero_Filme;
 //import model.TipoProduto;
@@ -45,24 +45,27 @@ public class TestePersistenciaLocadora {
     //
     @Test
     public void testePersistenciaLocadora() {
+        Cd c = new Cd();
+        c.setTitulo("Friday 14th");
+        c.setFaixa_etaria("proibido para menores de 14 anos");
+        c.setTipo("Horror");
         
         Cliente cl = new Cliente();
         cl.setNome("Jair");
         cl.setFone("99996666");
         cl.setEndereço("Rua tal, numero 24, A");
         
-        Cd cd = new Cd();
-        cd.setTitulo("Friday 14th");
-        cd.setFaixa_etaria("Não recomendado para menores de 14 anos");
-        cd.setTipo("Horror");
-        
         Alugamento a = new Alugamento();
         a.setDescricao("Alugamento por duas semanas");
-        a.setPreco(5.00f);
-         
+        a.setPreco(5.55f);
+        
+        a.setCliente(cl);
+        a.setCd(c);
+        
+        
         try{
             jpa.persist(cl);
-            jpa.persist(cd);
+            jpa.persist(c);
             jpa.persist(a);
             
             jpa.remover(a);

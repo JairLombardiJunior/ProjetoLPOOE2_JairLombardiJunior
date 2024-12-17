@@ -26,7 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tb_cd")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 //@DiscriminatorColumn(name = "tipo_cd", discriminatorType = DiscriminatorType.STRING)
 public class Cd implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,10 +36,10 @@ public class Cd implements Serializable{
     @Column(nullable = false, length = 50)
     private String titulo;
     
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 400)
     private String faixa_etaria;
     
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 200)
     private String tipo;
 
     public Cd() {
@@ -88,6 +88,7 @@ public class Cd implements Serializable{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
 
     /*
     public Jogo getJogo() {

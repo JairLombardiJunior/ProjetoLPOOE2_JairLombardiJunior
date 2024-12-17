@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class Cliente implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
-    @Column(name = "pessoa_id")
+    //@Column(name = "cliente_id")
     private int cpf;
     
     @Column(nullable = false, length = 37)
@@ -38,6 +38,7 @@ public class Cliente implements Serializable{
 
     public Cliente() {
     }
+    
     /*
     @OneToMany(mappedBy = "pessoa")
     private List<Alugamento> listaAlugamento;
