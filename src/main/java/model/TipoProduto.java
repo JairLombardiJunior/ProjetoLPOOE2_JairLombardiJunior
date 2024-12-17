@@ -8,6 +8,9 @@ package model;
  *
  * @author Camargo
  */
+
+///Não utilizada
+
 public enum TipoProduto {
     JOGO, FILME,DOCUMENTARIO;
 }

@@ -296,6 +296,7 @@ public class TelaCadastroAlugel extends javax.swing.JFrame {
         txtAlDescricao.setText(alugamento.getDescricao());
         /////
         
+        float preco = Float.parseFloat(txfAlPreco.getText());
         // txfAlPreco.setText(alugamento.getPreco()); ?
         cmbAlCliente.setSelectedItem(alugamento.getCliente());
         cmbAlCd.setSelectedItem(alugamento.getCd());
