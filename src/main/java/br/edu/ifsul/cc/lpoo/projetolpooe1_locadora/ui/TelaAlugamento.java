@@ -78,9 +78,19 @@ public class TelaAlugamento extends javax.swing.JFrame {
 
         jLabel1.setText("Procurar Pessoa:");
 
+        txfCdBusca.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                txtBuscaCdKeyPressed(evt);
+            }
+        });
         txfCdBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfCdBuscaActionPerformed(evt);
+            }
+        });
+        txfCdBusca.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtBuscaCdKeyReleased(evt);
             }
         });
 
@@ -276,6 +286,27 @@ public class TelaAlugamento extends javax.swing.JFrame {
             jpa.fecharConexao();
         }
     }//GEN-LAST:event_txtBuscaNomeKeyReleased
+
+    private void txtBuscaCdKeyPressed(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_txtBuscaCdKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaCdKeyPressed
+
+    private void txtBuscaCdKeyReleased(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtBuscaCdKeyReleased
+        if(txfCdBusca.getText().trim().isEmpty()){
+            carregarAlugeisCadastrados();
+        } else{
+            jpa.conexaoAberta();
+            DefaultListModel modeloLista = new DefaultListModel();
+            
+            //modeloLista.addAll(jpa.getCds(txfCdBusca.getText().trim())); 
+            //?
+            
+            System.out.println("Clientes carregadas: "+jpa.getClientes(txfCdBusca.getText().trim()));
+            lstAlugueis.setModel(modeloLista);
+
+            jpa.fecharConexao();
+        }
+    }//GEN-LAST:event_txtBuscaCdKeyReleased
 
     /**
      * @param args the command line arguments

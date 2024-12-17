@@ -92,8 +92,6 @@ public class PersistenciaJPA implements InterfaceBD{
     }
     
     
-    
-    
     public List<Cliente> getClientes() {
         entity = getEntityManager();
 
@@ -137,6 +135,23 @@ public class PersistenciaJPA implements InterfaceBD{
         }
 
     }
+    /* ???
+    public List<Cd> getCds(String titulo) {
+        entity = getEntityManager();
+
+        try {
+            TypedQuery<Cd> query
+                    = entity.createQuery("Select cd from Cd cd where lower(cd.titulo) LIKE :n",
+                            Cliente.class);
+            query.setParameter("n", "%" + titulo.toLowerCase() + "%");
+            return query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Erro ao buscar Clientes: " + e);
+            return null;
+        }
+
+    }*/
+    
     /*
     public List<Cd> getCds() {
         EntityManager em = getEntityManager();
